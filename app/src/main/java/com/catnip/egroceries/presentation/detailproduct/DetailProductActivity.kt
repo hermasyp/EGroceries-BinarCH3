@@ -38,7 +38,9 @@ class DetailProductActivity : AppCompatActivity() {
     }
 
     private fun setClickListener() {
-
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
         binding.ivMinus.setOnClickListener{
             viewModel.minus()
         }
