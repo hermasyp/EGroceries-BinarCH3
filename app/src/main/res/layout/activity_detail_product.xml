@@ -107,7 +107,7 @@
         android:id="@+id/ll_bottom_action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:padding="8dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:weightSum="3"
@@ -122,6 +122,7 @@
             android:maxLines="1"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/fl_add_to_cart"
             app:layout_constraintStart_toStartOf="parent"
@@ -172,6 +173,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_weight="1"
+            android:layout_marginEnd="8dp"
             android:text="@string/buy_now" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
