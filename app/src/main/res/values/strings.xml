@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">EGroceries</string>
+    <string name="delivered_to">Delivered to</string>
+    <string name="jalan_depok_timur">Jalan Depok Timur</string>
+    <string name="tahu_bulat_digoreng_dadakan">Tahu bulat Digoreng Dadakan</string>
+    <string name="you_might_looking_for">You might looking for</string>
+    <string name="buy_now">Buy Now</string>
+</resources>

@@ -1,0 +1,30 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.EGroceries" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="fontFamily">@font/jakarta_font</item>
+        <item name="colorPrimary">@color/app_color_primary</item>
+        <item name="colorOnPrimary">@color/app_color_on_primary</item>
+        <item name="colorPrimaryContainer">@color/app_color_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/app_color_on_primary_container</item>
+
+        <item name="colorSecondary">@color/app_color_secondary</item>
+        <item name="colorOnSecondary">@color/app_color_on_secondary</item>
+        <item name="colorSecondaryContainer">@color/app_color_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/app_color_on_secondary_container</item>
+
+        <item name="colorTertiary">@color/app_color_tertiary</item>
+        <item name="colorOnTertiary">@color/app_color_on_tertiary</item>
+        <item name="colorTertiaryContainer">@color/app_color_tertiary_container</item>
+        <item name="colorOnTertiaryContainer">@color/app_color_on_tertiary_container</item>
+
+        <item name="colorError">@color/app_color_error</item>
+        <item name="colorOnError">@color/app_color_on_error</item>
+        <item name="colorErrorContainer">@color/app_color_error_container</item>
+        <item name="colorOnErrorContainer">@color/app_color_on_error_container</item>
+
+    </style>
+
+    <style name="Theme.EGroceries" parent="Base.Theme.EGroceries" />
+</resources>
