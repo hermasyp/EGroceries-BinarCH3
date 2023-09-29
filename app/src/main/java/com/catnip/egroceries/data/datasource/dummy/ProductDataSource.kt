@@ -1,4 +1,4 @@
-package com.catnip.egroceries.data.datasource
+package com.catnip.egroceries.data.datasource.dummy
 
 import com.catnip.egroceries.model.Product
 

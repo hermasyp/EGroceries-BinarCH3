@@ -22,8 +22,10 @@ import com.catnip.egroceries.presentation.home.adapter.viewholder.ProductsSectio
 Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
-class HomeAdapter(private val onProductClicked: (Product) -> Unit) :
-    RecyclerView.Adapter<ViewHolder>() {
+class HomeAdapter(
+    private val onProductClicked: (Product) -> Unit,
+    private val onSettingsClicked: () -> Unit
+) : RecyclerView.Adapter<ViewHolder>() {
     private var items: MutableList<HomeSection> = mutableListOf()
 
     fun setItems(items: List<HomeSection>) {
@@ -43,30 +45,55 @@ class HomeAdapter(private val onProductClicked: (Product) -> Unit) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return when(viewType){
-            ITEM_TYPE_HEADER ->{
+        return when (viewType) {
+            ITEM_TYPE_HEADER -> {
                 HeaderSectionViewHolder(
-                    ItemSectionHeaderHomeBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+                    ItemSectionHeaderHomeBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    ), onSettingsClicked
                 )
             }
-            ITEM_TYPE_BANNER ->{
+
+            ITEM_TYPE_BANNER -> {
                 BannerSectionViewHolder(
-                    ItemSectionBannerHomeBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+                    ItemSectionBannerHomeBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
                 )
             }
-            ITEM_TYPE_CATEGORY_LIST ->{
+
+            ITEM_TYPE_CATEGORY_LIST -> {
                 CategoriesSectionViewHolder(
-                    ItemSectionCategoryBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+                    ItemSectionCategoryBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
                 )
             }
-            ITEM_TYPE_PRODUCT_LIST ->{
+
+            ITEM_TYPE_PRODUCT_LIST -> {
                 ProductsSectionViewHolder(
-                    ItemSectionProductListBinding.inflate(LayoutInflater.from(parent.context),parent,false),
+                    ItemSectionProductListBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    ),
                     onProductClicked
                 )
             }
 
-            else -> EmptyViewHolder( ItemEmptyViewHolderBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+            else -> EmptyViewHolder(
+                ItemEmptyViewHolderBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
         }
     }
 
@@ -77,7 +104,7 @@ class HomeAdapter(private val onProductClicked: (Product) -> Unit) :
     override fun getItemCount(): Int = items.size
 
     override fun getItemViewType(position: Int): Int {
-        return when(items[position]){
+        return when (items[position]) {
             HomeSection.HeaderSection -> ITEM_TYPE_HEADER
             HomeSection.BannerSection -> ITEM_TYPE_BANNER
             is HomeSection.CategoriesSection -> ITEM_TYPE_CATEGORY_LIST

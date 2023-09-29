@@ -6,16 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import coil.load
-import com.catnip.egroceries.R
-import com.catnip.egroceries.data.datasource.CategoryDataSource
-import com.catnip.egroceries.data.datasource.CategoryDataSourceImpl
-import com.catnip.egroceries.data.datasource.ProductDataSource
-import com.catnip.egroceries.data.datasource.ProductDataSourceImpl
-import com.catnip.egroceries.data.repository.ProductRepository
-import com.catnip.egroceries.data.repository.ProductRepositoryImpl
 import com.catnip.egroceries.databinding.ActivityDetailProductBinding
 import com.catnip.egroceries.model.Product
-import com.catnip.egroceries.presentation.home.HomeViewModel
 import com.catnip.egroceries.utils.GenericViewModelFactory
 import com.catnip.egroceries.utils.toCurrencyFormat
 
