@@ -7,8 +7,8 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.catnip.egroceries.R
-import com.catnip.egroceries.data.datasource.local.datastore.UserPreferenceDataSourceImpl
-import com.catnip.egroceries.data.datasource.local.datastore.appDataStore
+import com.catnip.egroceries.data.local.datastore.UserPreferenceDataSourceImpl
+import com.catnip.egroceries.data.local.datastore.appDataStore
 import com.catnip.egroceries.databinding.ActivityMainBinding
 import com.catnip.egroceries.utils.GenericViewModelFactory
 import com.catnip.egroceries.utils.PreferenceDataStoreHelperImpl

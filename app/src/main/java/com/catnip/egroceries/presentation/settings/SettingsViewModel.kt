@@ -2,7 +2,7 @@ package com.catnip.egroceries.presentation.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.catnip.egroceries.data.datasource.local.datastore.UserPreferenceDataSource
+import com.catnip.egroceries.data.local.datastore.UserPreferenceDataSource
 import kotlinx.coroutines.launch
 
 /**

@@ -7,17 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.catnip.egroceries.data.datasource.dummy.CategoryDataSource
-import com.catnip.egroceries.data.datasource.dummy.CategoryDataSourceImpl
-import com.catnip.egroceries.data.datasource.dummy.ProductDataSource
-import com.catnip.egroceries.data.datasource.dummy.ProductDataSourceImpl
+import com.catnip.egroceries.data.dummy.CategoryDataSource
+import com.catnip.egroceries.data.dummy.CategoryDataSourceImpl
+import com.catnip.egroceries.data.dummy.DummyProductDataSource
+import com.catnip.egroceries.data.dummy.DummyProductDataSourceImpl
 import com.catnip.egroceries.data.repository.ProductRepository
 import com.catnip.egroceries.data.repository.ProductRepositoryImpl
 import com.catnip.egroceries.databinding.FragmentHomeBinding
 import com.catnip.egroceries.model.Product
 import com.catnip.egroceries.presentation.detailproduct.DetailProductActivity
 import com.catnip.egroceries.presentation.home.adapter.HomeAdapter
-import com.catnip.egroceries.presentation.settings.SettingsDialogFragment
 import com.catnip.egroceries.utils.GenericViewModelFactory
 
 
@@ -33,7 +32,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun openSettingDialog() {
-        SettingsDialogFragment().show(childFragmentManager,null)
+        //SettingsDialogFragment().show(childFragmentManager,null)
     }
 
     private fun navigateToDetail(item: Product) {
@@ -42,7 +41,7 @@ class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModels {
         val cds: CategoryDataSource = CategoryDataSourceImpl()
-        val pds: ProductDataSource = ProductDataSourceImpl()
+        val pds: DummyProductDataSource = DummyProductDataSourceImpl()
         val repo: ProductRepository = ProductRepositoryImpl(cds, pds)
         GenericViewModelFactory.create(HomeViewModel(repo))
     }

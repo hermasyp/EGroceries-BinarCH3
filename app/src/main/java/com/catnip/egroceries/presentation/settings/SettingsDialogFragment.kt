@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import com.catnip.egroceries.data.datasource.local.datastore.UserPreferenceDataSourceImpl
-import com.catnip.egroceries.data.datasource.local.datastore.appDataStore
+import com.catnip.egroceries.data.local.datastore.UserPreferenceDataSourceImpl
+import com.catnip.egroceries.data.local.datastore.appDataStore
 import com.catnip.egroceries.databinding.FragmentSettingsDialogBinding
 import com.catnip.egroceries.presentation.main.MainViewModel
 import com.catnip.egroceries.utils.GenericViewModelFactory

@@ -1,4 +1,4 @@
-package com.catnip.egroceries.data.datasource.local.datastore
+package com.catnip.egroceries.data.local.datastore
 
 import android.content.Context
 import androidx.datastore.preferences.preferencesDataStore

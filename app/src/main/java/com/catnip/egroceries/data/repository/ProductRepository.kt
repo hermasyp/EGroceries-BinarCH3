@@ -1,7 +1,7 @@
 package com.catnip.egroceries.data.repository
 
-import com.catnip.egroceries.data.datasource.dummy.CategoryDataSource
-import com.catnip.egroceries.data.datasource.dummy.ProductDataSource
+import com.catnip.egroceries.data.dummy.CategoryDataSource
+import com.catnip.egroceries.data.dummy.DummyProductDataSource
 import com.catnip.egroceries.model.Category
 import com.catnip.egroceries.model.Product
 
@@ -16,7 +16,7 @@ interface ProductRepository {
 
 class ProductRepositoryImpl(
     private val categoryDataSource: CategoryDataSource,
-    private val productDataSource: ProductDataSource
+    private val productDataSource: DummyProductDataSource
 ) : ProductRepository {
 
     override fun getCategories(): List<Category> {

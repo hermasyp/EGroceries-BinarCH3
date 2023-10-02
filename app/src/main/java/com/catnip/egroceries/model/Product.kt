@@ -10,7 +10,7 @@ Github : https://github.com/hermasyp
  **/
 @Parcelize
 data class Product(
-    val id: String = UUID.randomUUID().toString(),
+    val id: Int? = null,
     val name: String,
     val price: Double,
     val weightInKg: Double,
