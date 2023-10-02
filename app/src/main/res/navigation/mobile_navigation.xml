@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.catnip.egroceries.presentation.home.HomeFragment"
+        android:name="com.catnip.egroceries.presentation.feature.home.HomeFragment"
         android:label="@string/title_tab_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_cart"
-        android:name="com.catnip.egroceries.presentation.cart.CartFragment"
+        android:name="com.catnip.egroceries.presentation.feature.cart.CartFragment"
         android:label="@string/title_tab_cart"
         tools:layout="@layout/fragment_cart" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.catnip.egroceries.presentation.profile.ProfileFragment"
+        android:name="com.catnip.egroceries.presentation.feature.profile.ProfileFragment"
         android:label="@string/title_tab_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

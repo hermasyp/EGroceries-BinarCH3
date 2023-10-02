@@ -12,4 +12,14 @@
     <string name="title_tab_profile">Profile</string>
     <string name="app_settings">App Settings</string>
     <string name="dark_mode">Dark Mode</string>
+    <string name="text_checkout">Checkout</string>
+    <string name="text_total_price">Total Price</string>
+    <string name="text_hint_notes">Notes</string>
+    <string name="text_title_order_confirmation">Order Confirmation</string>
+    <string name="text_delivery_method">Delivery Method</string>
+    <string name="text_pick_up">Pick Up</string>
+    <string name="text_delivery">Delivery</string>
+    <string name="text_payment_method">Payment Method</string>
+    <string name="text_cash">Cash</string>
+    <string name="text_e_wallet">E-Wallet</string>
 </resources>

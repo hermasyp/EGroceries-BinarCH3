@@ -4,7 +4,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey_text">#767676</color>
     <color name="grey_border">#CCC3C3C3</color>
+    <color name="grey_background">#CCEDEDED</color>
     <color name="app_color_primary">#6FCF97</color>
+    <color name="transparent">#00FFFFFF</color>
     <color name="app_color_on_primary">#FFFFFF</color>
     <color name="app_color_primary_container">#AACAB7</color>
     <color name="app_color_on_primary_container">#36404B</color>
