@@ -31,11 +31,11 @@ class CartDatabaseDataSource(private val cartDao: CartDao) : CartDataSource {
     }
 
     override suspend fun deleteCart(cart: CartEntity): Int {
-        return cartDao.deleteProduct(cart)
+        return cartDao.deleteCart(cart)
     }
 
     override suspend fun updateCart(cart: CartEntity): Int {
-        return cartDao.updateProduct(cart)
+        return cartDao.updateCart(cart)
     }
 
 }
