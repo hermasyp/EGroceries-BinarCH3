@@ -12,6 +12,7 @@ import com.catnip.egroceries.core.ViewHolderBinder
 import com.catnip.egroceries.databinding.ItemCartProductBinding
 import com.catnip.egroceries.model.Cart
 import com.catnip.egroceries.model.CartProduct
+import com.catnip.egroceries.utils.doneEditing
 
 /**
 Written with love by Muhammad Hermas Yuda Pamungkas
@@ -80,23 +81,12 @@ class CartViewHolder(
 
     private fun setCartNotes(item: CartProduct) {
         binding.etNotesItem.setText(item.cart.itemNotes)
-        binding.etNotesItem.setOnEditorActionListener { _, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH ||
-                actionId == EditorInfo.IME_ACTION_DONE ||
-                event != null &&
-                event.action == KeyEvent.ACTION_DOWN &&
-                event.keyCode == KeyEvent.KEYCODE_ENTER
-            ) {
-                if (event == null || !event.isShiftPressed) {
-                    // the user is done typing.
-                    val newItem = item.cart.apply {
-                        itemNotes = binding.etNotesItem.text.toString().trim()
-                    }
-                    cartListener.onUserDoneEditingNotes(newItem)
-                    return@setOnEditorActionListener true
-                }
+        binding.etNotesItem.doneEditing {
+            binding.etNotesItem.clearFocus()
+            val newItem = item.cart.copy().apply {
+                itemNotes = binding.etNotesItem.text.toString().trim()
             }
-            return@setOnEditorActionListener true
+            cartListener.onUserDoneEditingNotes(newItem)
         }
     }
 
@@ -105,15 +95,13 @@ class CartViewHolder(
             ivMinus.setOnClickListener { cartListener.onMinusTotalItemCartClicked(item.cart) }
             ivPlus.setOnClickListener { cartListener.onPlusTotalItemCartClicked(item.cart) }
             ivRemoveCart.setOnClickListener { cartListener.onRemoveCartClicked(item.cart) }
-            itemView.setOnClickListener { cartListener.onCartClicked(item) }
         }
     }
 }
 
 interface CartListener {
-    fun onCartClicked(item: CartProduct)
     fun onPlusTotalItemCartClicked(cart: Cart)
     fun onMinusTotalItemCartClicked(cart: Cart)
     fun onRemoveCartClicked(cart: Cart)
-    fun onUserDoneEditingNotes(newCart: Cart)
+    fun onUserDoneEditingNotes(cart: Cart)
 }

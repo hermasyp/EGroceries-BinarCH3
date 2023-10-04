@@ -4,11 +4,18 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import coil.load
+import com.catnip.egroceries.data.local.database.AppDatabase
+import com.catnip.egroceries.data.local.database.datasource.CartDataSource
+import com.catnip.egroceries.data.local.database.datasource.CartDatabaseDataSource
+import com.catnip.egroceries.data.repository.CartRepository
+import com.catnip.egroceries.data.repository.CartRepositoryImpl
 import com.catnip.egroceries.databinding.ActivityDetailProductBinding
 import com.catnip.egroceries.model.Product
 import com.catnip.egroceries.utils.GenericViewModelFactory
+import com.catnip.egroceries.utils.proceedWhen
 import com.catnip.egroceries.utils.toCurrencyFormat
 
 class DetailProductActivity : AppCompatActivity() {
@@ -17,11 +24,13 @@ class DetailProductActivity : AppCompatActivity() {
         ActivityDetailProductBinding.inflate(layoutInflater)
     }
 
-    private val viewModel: com.catnip.egroceries.presentation.feature.detailproduct.DetailProductViewModel by viewModels {
+    private val viewModel: DetailProductViewModel by viewModels {
+        val database = AppDatabase.getInstance(this)
+        val cartDao = database.cartDao()
+        val cartDataSource: CartDataSource = CartDatabaseDataSource(cartDao)
+        val repo: CartRepository = CartRepositoryImpl(cartDataSource)
         GenericViewModelFactory.create(
-            com.catnip.egroceries.presentation.feature.detailproduct.DetailProductViewModel(
-                intent?.extras
-            )
+            DetailProductViewModel(intent?.extras, repo)
         )
     }
 
@@ -37,20 +46,32 @@ class DetailProductActivity : AppCompatActivity() {
         binding.ivBack.setOnClickListener {
             onBackPressed()
         }
-        binding.ivMinus.setOnClickListener{
+        binding.ivMinus.setOnClickListener {
             viewModel.minus()
         }
-        binding.ivPlus.setOnClickListener{
+        binding.ivPlus.setOnClickListener {
             viewModel.add()
+        }
+        binding.btnAddToCart.setOnClickListener {
+            viewModel.addToCart()
         }
     }
 
     private fun observeData() {
-        viewModel.priceLiveData.observe(this){
+        viewModel.priceLiveData.observe(this) {
             binding.tvProductPrice.text = it.toCurrencyFormat()
         }
-        viewModel.productCountLiveData.observe(this){
+        viewModel.productCountLiveData.observe(this) {
             binding.tvProductCount.text = it.toString()
+        }
+        viewModel.addToCartResult.observe(this) {
+            it.proceedWhen(
+                doOnSuccess = {
+                    Toast.makeText(this, "Add to cart success !", Toast.LENGTH_SHORT).show()
+                    finish()
+                }, doOnError = {
+                    Toast.makeText(this, it.exception?.message.orEmpty(), Toast.LENGTH_SHORT).show()
+                })
         }
     }
 
@@ -70,8 +91,8 @@ class DetailProductActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_PRODUCT = "EXTRA_PRODUCT"
         fun startActivity(context: Context, product: Product) {
-            val intent = Intent(context, com.catnip.egroceries.presentation.feature.detailproduct.DetailProductActivity::class.java)
-            intent.putExtra(com.catnip.egroceries.presentation.feature.detailproduct.DetailProductActivity.Companion.EXTRA_PRODUCT, product)
+            val intent = Intent(context, DetailProductActivity::class.java)
+            intent.putExtra(EXTRA_PRODUCT, product)
             context.startActivity(intent)
         }
     }

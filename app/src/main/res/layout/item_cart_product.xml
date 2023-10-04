@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
     android:padding="8dp">
 
     <ImageView
@@ -93,18 +92,19 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/et_notes_item"
-        android:imeOptions="actionDone"
         style="@style/ThemeOverlay.Material3.TextInputEditText.FilledBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:background="@drawable/bg_button_rounded_border_transparent"
         android:hint="@string/text_hint_notes"
-        android:padding="8dp"
+        android:imeOptions="actionDone"
+        android:inputType="text"
         android:maxLines="3"
-        tools:text="aikowfbawoifhaowifb awbn ouiqawhofin awf oiawf awoif"
+        android:padding="8dp"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/iv_product_image"
-        app:layout_constraintTop_toBottomOf="@id/iv_product_image" />
+        app:layout_constraintTop_toBottomOf="@id/iv_product_image"
+        tools:text="aikowfbawoifhaowifb awbn ouiqawhofin awf oiawf awoif" />
 </androidx.constraintlayout.widget.ConstraintLayout>

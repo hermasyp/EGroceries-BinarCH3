@@ -11,7 +11,7 @@ Github : https://github.com/hermasyp
 @Entity(tableName = "products")
 data class ProductEntity(
     @PrimaryKey(autoGenerate = true)
-    var id: Int? = 0,
+    var id: Int? = null,
     @ColumnInfo(name = "name")
     val name: String,
     @ColumnInfo(name = "price")

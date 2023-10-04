@@ -22,4 +22,7 @@
     <string name="text_payment_method">Payment Method</string>
     <string name="text_cash">Cash</string>
     <string name="text_e_wallet">E-Wallet</string>
+    <string name="text_cart_is_empty">Cart is Empty</string>
+    <string name="text_btn_add_to_cart">Add to cart</string>
+    <string name="text_title_your_cart">Your Cart</string>
 </resources>

@@ -67,12 +67,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun fetchData() {
-        viewModel.fetchHomeData()
         viewModel.homeData.observe(viewLifecycleOwner) {
             adapter.submitData(it)
         }
     }
-
 
     private fun setupList() {
         binding.rvHome.apply {

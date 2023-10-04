@@ -31,21 +31,24 @@ class ProductsSectionViewHolder(
     override fun bind(item: HomeSection) {
         if (item is HomeSection.ProductsSection) {
             item.data.proceedWhen(doOnSuccess = {
-                binding.pbLoading.isVisible = false
-                binding.tvError.isVisible = false
+                binding.layoutState.root.isVisible = false
+                binding.layoutState.pbLoading.isVisible = false
+                binding.layoutState.tvError.isVisible = false
                 binding.rvProductList.apply {
                     isVisible = true
                     adapter = this@ProductsSectionViewHolder.adapter
                 }
                 item.data.payload?.let { data -> adapter.submitData(data) }
             }, doOnLoading = {
-                binding.pbLoading.isVisible = true
-                binding.tvError.isVisible = false
+                binding.layoutState.root.isVisible = true
+                binding.layoutState.pbLoading.isVisible = true
+                binding.layoutState.tvError.isVisible = false
                 binding.rvProductList.isVisible = false
             }, doOnError = {
-                binding.pbLoading.isVisible = false
-                binding.tvError.isVisible = true
-                binding.tvError.text = item.data.exception?.message.orEmpty()
+                binding.layoutState.root.isVisible = true
+                binding.layoutState.pbLoading.isVisible = false
+                binding.layoutState.tvError.isVisible = true
+                binding.layoutState.tvError.text = item.data.exception?.message.orEmpty()
                 binding.rvProductList.isVisible = false
             })
         }

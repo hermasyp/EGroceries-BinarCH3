@@ -28,21 +28,12 @@
         app:spanCount="2"
         tools:listitem="@layout/item_product" />
 
-    <ProgressBar
-        android:id="@+id/pb_loading"
+    <include
+        android:id="@+id/layout_state"
+        layout="@layout/common_layout_content_state"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/tv_error"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:textAlignment="center"
-        android:visibility="gone" />
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toTopOf="@id/cv_section_checkout"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </LinearLayout>
