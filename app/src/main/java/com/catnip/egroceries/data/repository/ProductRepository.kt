@@ -4,6 +4,7 @@ import com.catnip.egroceries.data.dummy.DummyCategoryDataSource
 import com.catnip.egroceries.data.dummy.DummyProductDataSourceImpl
 import com.catnip.egroceries.data.local.database.datasource.CartDataSource
 import com.catnip.egroceries.data.local.database.datasource.ProductDataSource
+import com.catnip.egroceries.data.local.database.entity.ProductEntity
 import com.catnip.egroceries.data.local.database.mapper.toProductList
 import com.catnip.egroceries.model.Category
 import com.catnip.egroceries.model.Product
@@ -20,6 +21,7 @@ Github : https://github.com/hermasyp
  **/
 interface ProductRepository {
     fun getCategories(): List<Category>
+    fun getProducts(): Flow<ResultWrapper<List<Product>>>
 }
 
 class ProductRepositoryImpl(
@@ -31,4 +33,12 @@ class ProductRepositoryImpl(
         return dummyCategoryDataSource.getProductCategory()
     }
 
+    override fun getProducts(): Flow<ResultWrapper<List<Product>>> {
+        return productDataSource.getAllProducts().map {
+            proceed { it.toProductList() }
+        }.onStart {
+            emit(ResultWrapper.Loading())
+            delay(2000)
+        }
+    }
 }

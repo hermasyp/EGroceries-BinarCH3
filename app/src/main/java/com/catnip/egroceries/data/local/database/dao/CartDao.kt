@@ -27,7 +27,7 @@ interface CartDao {
     suspend fun insertCart(cart: CartEntity): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCarts(product: List<CartEntity>)
+    suspend fun insertCarts(cart: List<CartEntity>)
 
     @Delete
     suspend fun deleteCart(cart: CartEntity): Int

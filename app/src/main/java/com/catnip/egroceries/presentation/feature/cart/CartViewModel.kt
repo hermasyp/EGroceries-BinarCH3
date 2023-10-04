@@ -15,5 +15,10 @@ Github : https://github.com/hermasyp
  **/
 class CartViewModel(private val repo: CartRepository) : ViewModel() {
 
+    val cartList = repo.getUserCartData().asLiveData(Dispatchers.IO)
+
+    fun decreaseCart(item: Cart) {
+        viewModelScope.launch {repo.decreaseCart(item).collect()}
+    }
 
 }

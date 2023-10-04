@@ -14,20 +14,10 @@ Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
 interface ProductDataSource {
-
-    @Query("SELECT * FROM PRODUCTS")
     fun getAllProducts(): Flow<List<ProductEntity>>
-
-    @Query("SELECT * FROM PRODUCTS WHERE id == :id")
     fun getProductById(id: Int): Flow<ProductEntity>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertProducts(product: List<ProductEntity>)
-
-    @Delete
     suspend fun deleteProduct(product: ProductEntity): Int
-
-    @Update
     suspend fun updateProduct(product: ProductEntity): Int
 
 }

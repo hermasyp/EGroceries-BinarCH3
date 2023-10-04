@@ -20,3 +20,4 @@ data class CartEntity(
     var itemNotes: String? = null,
 )
 
+/// 1 product > n cart

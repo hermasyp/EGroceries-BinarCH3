@@ -40,16 +40,19 @@ class CartFragment : Fragment() {
     private val adapter: CartListAdapter by lazy {
         CartListAdapter(object : CartListener {
             override fun onPlusTotalItemCartClicked(cart: Cart) {
+                //todo : add quantity cart item
             }
 
             override fun onMinusTotalItemCartClicked(cart: Cart) {
+                viewModel.decreaseCart(cart)
             }
 
             override fun onRemoveCartClicked(cart: Cart) {
+                //todo : remove cart item
             }
 
             override fun onUserDoneEditingNotes(cart: Cart) {
-
+                //todo : edit notes cart item
             }
         })
     }
@@ -71,7 +74,7 @@ class CartFragment : Fragment() {
 
     private fun setClickListener() {
         binding.btnCheckout.setOnClickListener {
-            context?.startActivity(Intent(requireContext(),CheckoutActivity::class.java))
+            context?.startActivity(Intent(requireContext(), CheckoutActivity::class.java))
         }
     }
 
@@ -81,7 +84,35 @@ class CartFragment : Fragment() {
     }
 
     private fun observeData() {
-
+        viewModel.cartList.observe(viewLifecycleOwner) { result ->
+            result.proceedWhen(
+                doOnSuccess = {
+                    binding.rvCart.isVisible = true
+                    binding.layoutState.root.isVisible = false
+                    binding.layoutState.pbLoading.isVisible = false
+                    binding.layoutState.tvError.isVisible = false
+                    result.payload?.let { (carts,totalPrice) ->
+                        adapter.submitData(carts)
+                        binding.tvTotalPrice.text = totalPrice.toCurrencyFormat()
+                    }
+                },
+                doOnError = { err ->
+                    binding.layoutState.root.isVisible = true
+                    binding.layoutState.tvError.isVisible = true
+                    binding.layoutState.tvError.text = err.exception?.message.orEmpty()
+                    binding.layoutState.pbLoading.isVisible = false
+                },
+                doOnLoading = {
+                    binding.layoutState.root.isVisible = true
+                    binding.layoutState.tvError.isVisible = false
+                    binding.layoutState.pbLoading.isVisible = true
+                    binding.rvCart.isVisible = false
+                },
+                doOnEmpty = {
+                    //todo : add empty state
+                }
+            )
+        }
     }
 
 }
