@@ -10,6 +10,5 @@ Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
 class CheckoutViewModel(private val cartRepository: CartRepository) : ViewModel() {
-    val cartList = cartRepository.getUserCardData().asLiveData(Dispatchers.IO)
 
 }

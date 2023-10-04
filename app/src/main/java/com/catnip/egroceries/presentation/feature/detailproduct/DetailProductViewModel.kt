@@ -47,15 +47,7 @@ class DetailProductViewModel(
     }
 
     fun addToCart() {
-        viewModelScope.launch {
-            val productQuantity =
-                if ((productCountLiveData.value ?: 0) <= 0) 1 else productCountLiveData.value ?: 0
-            product?.let {
-                cartRepository.createCart(it, productQuantity).collect { result ->
-                    _addToCartResult.postValue(result)
-                }
-            }
-        }
+
     }
 
 

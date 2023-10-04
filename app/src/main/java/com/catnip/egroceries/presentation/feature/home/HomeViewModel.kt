@@ -20,10 +20,6 @@ Github : https://github.com/hermasyp
 
 class HomeViewModel(private val repo: ProductRepository) : ViewModel() {
 
-    val homeData: LiveData<List<HomeSection>>
-        get() = repo.getProducts().map {
-            mapToHomeData(it)
-        }.asLiveData(Dispatchers.Main)
 
     private fun mapToHomeData(productResult : ResultWrapper<List<Product>>): List<HomeSection> = listOf(
         HomeSection.HeaderSection,

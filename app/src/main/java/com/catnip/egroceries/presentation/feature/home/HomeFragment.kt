@@ -67,9 +67,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun fetchData() {
-        viewModel.homeData.observe(viewLifecycleOwner) {
-            adapter.submitData(it)
-        }
+
+
     }
 
     private fun setupList() {
