@@ -59,7 +59,7 @@ class DetailProductActivity : AppCompatActivity() {
 
     private fun observeData() {
         viewModel.priceLiveData.observe(this) {
-            binding.tvProductPrice.text = it.toCurrencyFormat()
+            binding.tvCalculatedProductPrice.text = it.toCurrencyFormat()
         }
         viewModel.productCountLiveData.observe(this) {
             binding.tvProductCount.text = it.toString()
@@ -82,8 +82,8 @@ class DetailProductActivity : AppCompatActivity() {
             }
             binding.tvProductName.text = item.name
             binding.tvProductDesc.text = item.desc
-            binding.tvProductRating.text = item.rating.toString()
             binding.tvProductPrice.text = item.price.toCurrencyFormat()
+            binding.tvProductRating.text = item.rating.toString()
             binding.tvProductFarm.text = item.supplierName
         }
     }

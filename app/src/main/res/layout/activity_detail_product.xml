@@ -53,10 +53,23 @@
                 android:maxLines="2"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/tv_product_rating"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_product_image"
                 tools:text="Banana" />
+
+            <TextView
+                android:id="@+id/tv_product_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@id/tv_product_rating"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_product_name"
+                tools:text="IDR. 20.000" />
 
             <TextView
                 android:id="@+id/tv_product_farm"
@@ -69,7 +82,7 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toStartOf="@id/tv_product_rating"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_product_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_product_price"
                 tools:text="Banana Farm" />
 
             <TextView
@@ -79,12 +92,12 @@
                 android:layout_marginTop="18dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/bg_button_rounded_border_transparent"
+                android:drawablePadding="8dp"
                 android:ellipsize="end"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="4dp"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:drawablePadding="8dp"
                 app:drawableLeftCompat="@drawable/ic_star"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_product_image"
@@ -107,22 +120,22 @@
         android:id="@+id/ll_bottom_action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:padding="8dp"
         android:weightSum="3"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
-            android:id="@+id/tv_product_price"
+            android:id="@+id/tv_calculated_product_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:ellipsize="end"
             android:maxLines="1"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/fl_add_to_cart"
             app:layout_constraintStart_toStartOf="parent"
@@ -172,8 +185,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_weight="1"
             android:layout_marginEnd="8dp"
+            android:layout_weight="1"
             android:text="@string/text_btn_add_to_cart" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

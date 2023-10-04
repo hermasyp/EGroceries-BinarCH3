@@ -1,5 +1,6 @@
 package com.catnip.egroceries.presentation.feature.cart
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ import com.catnip.egroceries.model.Cart
 import com.catnip.egroceries.model.CartProduct
 import com.catnip.egroceries.presentation.common.adapter.CartListAdapter
 import com.catnip.egroceries.presentation.common.adapter.CartListener
+import com.catnip.egroceries.presentation.feature.checkout.CheckoutActivity
 import com.catnip.egroceries.utils.GenericViewModelFactory
 import com.catnip.egroceries.utils.hideKeyboard
 import com.catnip.egroceries.utils.proceedWhen
@@ -68,7 +70,13 @@ class CartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupList()
         observeData()
+        setClickListener()
+    }
 
+    private fun setClickListener() {
+        binding.btnCheckout.setOnClickListener {
+            context?.startActivity(Intent(requireContext(),CheckoutActivity::class.java))
+        }
     }
 
     private fun setupList() {

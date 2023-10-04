@@ -22,7 +22,7 @@ Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
 interface CartRepository {
-    fun getCartList(): Flow<ResultWrapper<Pair<List<CartProduct>, Double>>>
+    fun getUserCardData(): Flow<ResultWrapper<Pair<List<CartProduct>, Double>>>
     suspend fun createCart(product: Product, totalQuantity: Int): Flow<ResultWrapper<Boolean>>
     suspend fun decreaseCart(item: Cart): Flow<ResultWrapper<Boolean>>
     suspend fun increaseCart(item: Cart): Flow<ResultWrapper<Boolean>>
@@ -34,7 +34,7 @@ class CartRepositoryImpl(
     private val dataSource: CartDataSource
 ) : CartRepository {
 
-    override fun getCartList(): Flow<ResultWrapper<Pair<List<CartProduct>, Double>>> {
+    override fun getUserCardData(): Flow<ResultWrapper<Pair<List<CartProduct>, Double>>> {
         return dataSource.getAllCarts()
             .map {
                 proceed {
