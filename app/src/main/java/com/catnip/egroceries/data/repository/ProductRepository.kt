@@ -29,8 +29,6 @@ interface ProductRepository {
 
 class ProductRepositoryImpl(
     private val apiDataSource: EGroceriesDataSource,
-    private val productDataSource: ProductDataSource,
-    private val dummyCategoryDataSource: DummyCategoryDataSource
 ) : ProductRepository {
 
     override fun getCategories(): Flow<ResultWrapper<List<Category>>> {

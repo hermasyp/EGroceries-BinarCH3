@@ -26,7 +26,7 @@ class EGroceriesApiDataSource(private val service: EGroceriesApiService) : EGroc
     }
 
     override suspend fun createOrder(orderRequest: OrderRequest): OrderResponse {
-        return createOrder(orderRequest)
+        return service.createOrder(orderRequest)
     }
 
 }

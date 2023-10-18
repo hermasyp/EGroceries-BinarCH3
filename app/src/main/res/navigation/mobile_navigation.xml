@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.catnip.egroceries.presentation.feature.home.HomeFragment"
+        android:name="com.catnip.egroceries.presentation.feature.home2.Home2Fragment"
         android:label="@string/title_tab_home"
         tools:layout="@layout/fragment_home" />
 

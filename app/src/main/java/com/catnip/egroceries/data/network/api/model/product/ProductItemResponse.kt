@@ -6,7 +6,7 @@ import androidx.annotation.Keep
 import com.catnip.egroceries.model.Product
 
 @Keep
-data class ProductResponse(
+data class ProductItemResponse(
     @SerializedName("desc")
     val desc: String?,
     @SerializedName("id")
@@ -25,7 +25,7 @@ data class ProductResponse(
     val weightInKg: Double?
 )
 
-fun ProductResponse.toProduct() = Product(
+fun ProductItemResponse.toProduct() = Product(
     id = this.id,
     name = this.name.orEmpty(),
     price = this.price ?: 0.0,
@@ -36,4 +36,4 @@ fun ProductResponse.toProduct() = Product(
     productImgUrl = this.productImgUrl.orEmpty()
 )
 
-fun Collection<ProductResponse>.toProductList() = this.map { it.toProduct() }
+fun Collection<ProductItemResponse>.toProductList() = this.map { it.toProduct() }

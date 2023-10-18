@@ -9,7 +9,7 @@ data class ProductsResponse(
     @SerializedName("code")
     val code: Int?,
     @SerializedName("data")
-    val data: List<ProductResponse>?,
+    val data: List<ProductItemResponse>?,
     @SerializedName("message")
     val message: String?,
     @SerializedName("status")
