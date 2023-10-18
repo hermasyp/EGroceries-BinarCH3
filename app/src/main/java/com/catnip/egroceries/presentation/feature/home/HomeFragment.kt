@@ -13,6 +13,8 @@ import com.catnip.egroceries.data.dummy.DummyProductDataSourceImpl
 import com.catnip.egroceries.data.local.database.AppDatabase
 import com.catnip.egroceries.data.local.database.datasource.ProductDataSource
 import com.catnip.egroceries.data.local.database.datasource.ProductDatabaseDataSource
+import com.catnip.egroceries.data.network.api.datasource.EGroceriesApiDataSource
+import com.catnip.egroceries.data.network.api.service.EGroceriesApiService
 import com.catnip.egroceries.data.repository.ProductRepository
 import com.catnip.egroceries.data.repository.ProductRepositoryImpl
 import com.catnip.egroceries.databinding.FragmentHomeBinding
@@ -31,6 +33,8 @@ class HomeFragment : Fragment() {
             navigateToDetail(it)
         }, onSettingsClicked = {
             openSettingDialog()
+        }, onCategoriesClicked = {
+
         })
     }
 
@@ -46,8 +50,11 @@ class HomeFragment : Fragment() {
         val cds: DummyCategoryDataSource = DummyCategoryDataSourceImpl()
         val database = AppDatabase.getInstance(requireContext())
         val productDao = database.productDao()
+        val service = EGroceriesApiService.invoke()
+        val egroceriesDataSource = EGroceriesApiDataSource(service)
         val productDataSource = ProductDatabaseDataSource(productDao)
-        val repo: ProductRepository = ProductRepositoryImpl(productDataSource, cds)
+        val repo: ProductRepository =
+            ProductRepositoryImpl(egroceriesDataSource, productDataSource, cds)
         GenericViewModelFactory.create(HomeViewModel(repo))
     }
 

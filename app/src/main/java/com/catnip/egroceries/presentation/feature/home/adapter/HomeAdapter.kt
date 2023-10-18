@@ -12,6 +12,7 @@ import com.catnip.egroceries.databinding.ItemSectionBannerHomeBinding
 import com.catnip.egroceries.databinding.ItemSectionCategoryBinding
 import com.catnip.egroceries.databinding.ItemSectionHeaderHomeBinding
 import com.catnip.egroceries.databinding.ItemSectionProductListBinding
+import com.catnip.egroceries.model.Category
 import com.catnip.egroceries.model.Product
 import com.catnip.egroceries.presentation.feature.home.adapter.model.HomeSection
 import com.catnip.egroceries.presentation.feature.home.adapter.viewholder.BannerSectionViewHolder
@@ -26,6 +27,7 @@ Github : https://github.com/hermasyp
  **/
 class HomeAdapter(
     private val onProductClicked: (Product) -> Unit,
+    private val onCategoriesClicked : (Category) -> Unit,
     private val onSettingsClicked: () -> Unit
 ) : RecyclerView.Adapter<ViewHolder>() {
 
@@ -77,7 +79,8 @@ class HomeAdapter(
                         LayoutInflater.from(parent.context),
                         parent,
                         false
-                    )
+                    ),
+                    onCategoriesClicked
                 )
             }
 

@@ -1,6 +1,8 @@
 package com.catnip.egroceries.model
 
 import android.os.Parcelable
+import com.catnip.egroceries.data.network.api.model.product.ProductResponse
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -17,4 +19,5 @@ data class Product(
     val rating: Double,
     val desc: String,
     val productImgUrl: String
-): Parcelable
+) : Parcelable
+

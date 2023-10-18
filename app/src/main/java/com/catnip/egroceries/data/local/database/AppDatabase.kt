@@ -63,7 +63,7 @@ class DatabaseSeederCallback(private val context: Context) : RoomDatabase.Callba
     override fun onCreate(db: SupportSQLiteDatabase) {
         super.onCreate(db)
         scope.launch {
-            getInstance(context).productDao().insertProduct(prepopulateProducts())
+            //getInstance(context).productDao().insertProduct(prepopulateProducts())
             getInstance(context).cartDao().insertCarts(prepopulateCarts())
         }
     }
