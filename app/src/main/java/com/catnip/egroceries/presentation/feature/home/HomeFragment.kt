@@ -28,7 +28,7 @@ class HomeFragment : Fragment() {
         }, onSettingsClicked = {
             openSettingDialog()
         }, onCategoriesClicked = {
-
+            viewModel.setSelectedCategory(it.slug)
         })
     }
 

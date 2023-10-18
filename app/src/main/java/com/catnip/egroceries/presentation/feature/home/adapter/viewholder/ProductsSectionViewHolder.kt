@@ -2,6 +2,7 @@ package com.catnip.egroceries.presentation.feature.home.adapter.viewholder
 
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.catnip.egroceries.R
 import com.catnip.egroceries.core.ViewHolderBinder
 import com.catnip.egroceries.databinding.ItemSectionProductListBinding
 import com.catnip.egroceries.model.Product
@@ -19,9 +20,11 @@ class ProductsSectionViewHolder(
     private val onClickListener: (Product) -> Unit
 ) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<HomeSection> {
     private val itemDecoration = GridSpacingItemDecoration(2, 48, true)
+
     init {
         binding.rvProductList.addItemDecoration(itemDecoration)
     }
+
     private val adapter: ProductListAdapter by lazy {
         ProductListAdapter {
             onClickListener.invoke(it)
@@ -49,6 +52,12 @@ class ProductsSectionViewHolder(
                 binding.layoutState.pbLoading.isVisible = false
                 binding.layoutState.tvError.isVisible = true
                 binding.layoutState.tvError.text = item.data.exception?.message.orEmpty()
+                binding.rvProductList.isVisible = false
+            }, doOnEmpty = {
+                binding.layoutState.root.isVisible = true
+                binding.layoutState.pbLoading.isVisible = false
+                binding.layoutState.tvError.isVisible = true
+                binding.layoutState.tvError.text = itemView.context.getString(R.string.product_not_found)
                 binding.rvProductList.isVisible = false
             })
         }

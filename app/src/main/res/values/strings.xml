@@ -27,4 +27,5 @@
     <string name="text_title_your_cart">Your Cart</string>
     <string name="total_quantity">x%s</string>
     <string name="shopping_summary">Shopping summary</string>
+    <string name="product_not_found">Product not found</string>
 </resources>
