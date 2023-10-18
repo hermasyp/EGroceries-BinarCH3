@@ -47,14 +47,10 @@ class HomeFragment : Fragment() {
     }
 
     private val viewModel: HomeViewModel by viewModels {
-        val cds: DummyCategoryDataSource = DummyCategoryDataSourceImpl()
-        val database = AppDatabase.getInstance(requireContext())
-        val productDao = database.productDao()
         val service = EGroceriesApiService.invoke()
-        val egroceriesDataSource = EGroceriesApiDataSource(service)
-        val productDataSource = ProductDatabaseDataSource(productDao)
+        val dataSource = EGroceriesApiDataSource(service)
         val repo: ProductRepository =
-            ProductRepositoryImpl(egroceriesDataSource, productDataSource, cds)
+            ProductRepositoryImpl(dataSource)
         GenericViewModelFactory.create(HomeViewModel(repo))
     }
 
