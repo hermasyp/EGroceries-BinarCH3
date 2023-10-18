@@ -7,12 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.catnip.egroceries.data.dummy.DummyCategoryDataSource
-import com.catnip.egroceries.data.dummy.DummyCategoryDataSourceImpl
-import com.catnip.egroceries.data.dummy.DummyProductDataSourceImpl
-import com.catnip.egroceries.data.local.database.AppDatabase
-import com.catnip.egroceries.data.local.database.datasource.ProductDataSource
-import com.catnip.egroceries.data.local.database.datasource.ProductDatabaseDataSource
 import com.catnip.egroceries.data.network.api.datasource.EGroceriesApiDataSource
 import com.catnip.egroceries.data.network.api.service.EGroceriesApiService
 import com.catnip.egroceries.data.repository.ProductRepository
