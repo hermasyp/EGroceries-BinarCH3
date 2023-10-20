@@ -4,6 +4,9 @@ import com.catnip.egroceries.data.local.database.datasource.CartDataSource
 import com.catnip.egroceries.data.local.database.entity.CartEntity
 import com.catnip.egroceries.data.local.database.mapper.toCartEntity
 import com.catnip.egroceries.data.local.database.mapper.toCartList
+import com.catnip.egroceries.data.network.api.datasource.EGroceriesDataSource
+import com.catnip.egroceries.data.network.api.model.order.OrderItemRequest
+import com.catnip.egroceries.data.network.api.model.order.OrderRequest
 import com.catnip.egroceries.model.Cart
 import com.catnip.egroceries.model.Product
 import com.catnip.egroceries.utils.ResultWrapper
@@ -26,11 +29,18 @@ interface CartRepository {
     suspend fun increaseCart(item: Cart): Flow<ResultWrapper<Boolean>>
     suspend fun setCartNotes(item: Cart): Flow<ResultWrapper<Boolean>>
     suspend fun deleteCart(item: Cart): Flow<ResultWrapper<Boolean>>
+    suspend fun order(items: List<Cart>): Flow<ResultWrapper<Boolean>>
+    suspend fun deleteAll()
 }
 
 class CartRepositoryImpl(
-    private val dataSource: CartDataSource
+    private val dataSource: CartDataSource,
+    private val eGroceriesDataSource: EGroceriesDataSource
 ) : CartRepository {
+
+    override suspend fun deleteAll() {
+        dataSource.deleteAll()
+    }
 
     override fun getUserCardData(): Flow<ResultWrapper<Pair<List<Cart>, Double>>> {
         return dataSource.getAllCarts()
@@ -103,5 +113,16 @@ class CartRepositoryImpl(
     override suspend fun deleteCart(item: Cart): Flow<ResultWrapper<Boolean>> {
         return proceedFlow { dataSource.deleteCart(item.toCartEntity()) > 0 }
     }
+
+    override suspend fun order(items: List<Cart>): Flow<ResultWrapper<Boolean>> {
+        return proceedFlow {
+            val orderItems = items.map {
+                OrderItemRequest(it.itemNotes, it.productId, it.itemQuantity)
+            } // xxx -> ppp
+            val orderRequest = OrderRequest(orderItems)
+            eGroceriesDataSource.createOrder(orderRequest).status == true
+        }
+    }
+
 
 }

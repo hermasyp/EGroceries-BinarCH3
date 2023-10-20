@@ -12,6 +12,8 @@ import com.catnip.egroceries.R
 import com.catnip.egroceries.data.local.database.AppDatabase
 import com.catnip.egroceries.data.local.database.datasource.CartDataSource
 import com.catnip.egroceries.data.local.database.datasource.CartDatabaseDataSource
+import com.catnip.egroceries.data.network.api.datasource.EGroceriesApiDataSource
+import com.catnip.egroceries.data.network.api.service.EGroceriesApiService
 import com.catnip.egroceries.data.repository.CartRepository
 import com.catnip.egroceries.data.repository.CartRepositoryImpl
 import com.catnip.egroceries.databinding.FragmentCartBinding
@@ -33,7 +35,9 @@ class CartFragment : Fragment() {
         val database = AppDatabase.getInstance(requireContext())
         val cartDao = database.cartDao()
         val cartDataSource: CartDataSource = CartDatabaseDataSource(cartDao)
-        val repo: CartRepository = CartRepositoryImpl(cartDataSource)
+        val service = EGroceriesApiService.invoke()
+        val apiDataSource = EGroceriesApiDataSource(service)
+        val repo: CartRepository = CartRepositoryImpl(cartDataSource,apiDataSource)
         GenericViewModelFactory.create(CartViewModel(repo))
     }
 

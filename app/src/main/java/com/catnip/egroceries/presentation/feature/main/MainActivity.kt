@@ -32,9 +32,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupBottomNav()
         observeDarkModePref()
-        val json = Gson().toJson(DummyProductDataSourceImpl().getProductList())
-        val jsonca = Gson().toJson(DummyCategoryDataSourceImpl().getProductCategory())
-        Log.d("Main", json)
     }
 
     private fun setupBottomNav() {

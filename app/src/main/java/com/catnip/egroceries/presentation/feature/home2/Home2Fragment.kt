@@ -94,7 +94,9 @@ class Home2Fragment : Fragment() {
                 binding.rvProductList.apply {
                     isVisible = true
                     adapter = productAdapter
+                    itemAnimator = null
                 }
+                binding.rvProductList.smoothScrollToPosition(0)
                 it.payload?.let { data -> productAdapter.submitData(data) }
             }, doOnLoading = {
                 binding.layoutStateProduct.root.isVisible = true
