@@ -29,4 +29,6 @@
     <string name="shopping_summary">Shopping summary</string>
     <string name="product_not_found">Product not found</string>
     <string name="text_okay">Okay</string>
+    <string name="all">all</string>
+    <string name="text_toast">Setting Opened</string>
 </resources>

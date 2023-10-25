@@ -5,11 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.catnip.egroceries.R
 import com.catnip.egroceries.data.repository.ProductRepository
 import com.catnip.egroceries.model.Category
 import com.catnip.egroceries.model.Product
 import com.catnip.egroceries.presentation.feature.home.adapter.HomeAdapter
 import com.catnip.egroceries.presentation.feature.home.adapter.model.HomeSection
+import com.catnip.egroceries.utils.AssetWrapper
 import com.catnip.egroceries.utils.ResultWrapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,7 +25,10 @@ Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
 
-class HomeViewModel(private val repo: ProductRepository) : ViewModel() {
+class HomeViewModel(
+    private val repo: ProductRepository,
+    private val assetWrapper: AssetWrapper
+) : ViewModel() {
 
     private val productsFlow =
         MutableStateFlow<ResultWrapper<List<Product>>>(ResultWrapper.Loading())
@@ -49,9 +54,10 @@ class HomeViewModel(private val repo: ProductRepository) : ViewModel() {
 
     fun setSelectedCategory(category: String? = null) {
         viewModelScope.launch {
-            repo.getProducts(if (category == "all") null else category).collect {
-                productsFlow.emit(it)
-            }
+            repo.getProducts(if (category == assetWrapper.getString(R.string.all)) null else category)
+                .collect {
+                    productsFlow.emit(it)
+                }
         }
     }
 }

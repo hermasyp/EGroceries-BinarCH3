@@ -4,29 +4,33 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.catnip.egroceries.data.network.api.datasource.EGroceriesApiDataSource
-import com.catnip.egroceries.data.network.api.service.EGroceriesApiService
-import com.catnip.egroceries.data.repository.ProductRepository
-import com.catnip.egroceries.data.repository.ProductRepositoryImpl
+import com.catnip.egroceries.R
 import com.catnip.egroceries.databinding.FragmentHomeBinding
 import com.catnip.egroceries.model.Product
 import com.catnip.egroceries.presentation.feature.detailproduct.DetailProductActivity
 import com.catnip.egroceries.presentation.feature.home.adapter.HomeAdapter
 import com.catnip.egroceries.presentation.feature.settings.SettingsDialogFragment
-import com.catnip.egroceries.utils.GenericViewModelFactory
-import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.catnip.egroceries.utils.AssetWrapper
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+
+    private val viewModel: HomeViewModel by viewModel()
+    //field injection
+    private val assetWrapper : AssetWrapper by inject()
+
     private val adapter: HomeAdapter by lazy {
         HomeAdapter(onProductClicked = {
             navigateToDetail(it)
         }, onSettingsClicked = {
+            Toast.makeText(requireContext(), assetWrapper.getString(R.string.text_toast), Toast.LENGTH_SHORT).show()
             openSettingDialog()
         }, onCategoriesClicked = {
             viewModel.setSelectedCategory(it.slug)
@@ -41,14 +45,6 @@ class HomeFragment : Fragment() {
         DetailProductActivity.startActivity(requireContext(), item)
     }
 
-    private val viewModel: HomeViewModel by viewModels {
-        val chuckerInterceptor = ChuckerInterceptor(requireContext().applicationContext)
-        val service = EGroceriesApiService.invoke(chuckerInterceptor)
-        val dataSource = EGroceriesApiDataSource(service)
-        val repo: ProductRepository =
-            ProductRepositoryImpl(dataSource)
-        GenericViewModelFactory.create(HomeViewModel(repo))
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
