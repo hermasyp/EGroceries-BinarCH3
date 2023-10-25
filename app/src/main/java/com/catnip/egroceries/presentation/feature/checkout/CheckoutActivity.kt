@@ -19,6 +19,7 @@ import com.catnip.egroceries.presentation.common.adapter.CartListAdapter
 import com.catnip.egroceries.utils.GenericViewModelFactory
 import com.catnip.egroceries.utils.proceedWhen
 import com.catnip.egroceries.utils.toCurrencyFormat
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 
 class CheckoutActivity : AppCompatActivity() {
 
@@ -26,7 +27,8 @@ class CheckoutActivity : AppCompatActivity() {
         val database = AppDatabase.getInstance(this)
         val cartDao = database.cartDao()
         val cartDataSource: CartDataSource = CartDatabaseDataSource(cartDao)
-        val service = EGroceriesApiService.invoke()
+        val chuckerInterceptor = ChuckerInterceptor(applicationContext)
+        val service = EGroceriesApiService.invoke(chuckerInterceptor)
         val apiDataSource = EGroceriesApiDataSource(service)
         val repo: CartRepository = CartRepositoryImpl(cartDataSource, apiDataSource)
         GenericViewModelFactory.create(CheckoutViewModel(repo))
@@ -39,7 +41,6 @@ class CheckoutActivity : AppCompatActivity() {
     private val adapter: CartListAdapter by lazy {
         CartListAdapter()
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

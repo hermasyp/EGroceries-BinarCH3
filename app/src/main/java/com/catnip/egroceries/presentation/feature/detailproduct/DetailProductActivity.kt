@@ -19,6 +19,7 @@ import com.catnip.egroceries.model.Product
 import com.catnip.egroceries.utils.GenericViewModelFactory
 import com.catnip.egroceries.utils.proceedWhen
 import com.catnip.egroceries.utils.toCurrencyFormat
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 
 class DetailProductActivity : AppCompatActivity() {
 
@@ -30,7 +31,8 @@ class DetailProductActivity : AppCompatActivity() {
         val database = AppDatabase.getInstance(this)
         val cartDao = database.cartDao()
         val cartDataSource: CartDataSource = CartDatabaseDataSource(cartDao)
-        val service = EGroceriesApiService.invoke()
+        val chuckerInterceptor = ChuckerInterceptor(this.applicationContext)
+        val service = EGroceriesApiService.invoke(chuckerInterceptor)
         val apiDataSource = EGroceriesApiDataSource(service)
         val repo: CartRepository = CartRepositoryImpl(cartDataSource,apiDataSource)
         GenericViewModelFactory.create(

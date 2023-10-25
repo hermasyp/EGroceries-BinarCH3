@@ -42,10 +42,18 @@ android {
     flavorDimensions += "env"
     productFlavors {
         create("production") {
-            buildConfigField("String", "BASE_URL", "\"https://9d4a7a20-c211-4ce2-b74e-aadfc7d583c3.mock.pstmn.io\"")
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                "\"https://9d4a7a20-c211-4ce2-b74e-aadfc7d583c3.mock.pstmn.io\""
+            )
         }
         create("integration") {
-            buildConfigField("String", "BASE_URL", "\"https://9d4a7a20-c211-4ce2-b74e-aadfc7d583c3.mock.pstmn.io\"")
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                "\"https://9d4a7a20-c211-4ce2-b74e-aadfc7d583c3.mock.pstmn.io\""
+            )
         }
     }
 }
@@ -85,5 +93,6 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
 
-
+    debugImplementation("com.github.chuckerteam.chucker:library:4.0.0")
+    releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.0.0")
 }

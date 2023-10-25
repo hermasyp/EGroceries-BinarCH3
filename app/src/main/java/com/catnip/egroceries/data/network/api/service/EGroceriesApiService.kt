@@ -1,10 +1,12 @@
 package com.catnip.egroceries.data.network.api.service
 
+import android.content.Context
 import com.catnip.egroceries.BuildConfig
 import com.catnip.egroceries.data.network.api.model.category.CategoriesResponse
 import com.catnip.egroceries.data.network.api.model.order.OrderRequest
 import com.catnip.egroceries.data.network.api.model.order.OrderResponse
 import com.catnip.egroceries.data.network.api.model.product.ProductsResponse
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -31,8 +33,9 @@ interface EGroceriesApiService {
 
     companion object {
         @JvmStatic
-        operator fun invoke(): EGroceriesApiService {
+        operator fun invoke(chucker : ChuckerInterceptor): EGroceriesApiService {
             val okHttpClient = OkHttpClient.Builder()
+                .addInterceptor(chucker)
                 .connectTimeout(120, TimeUnit.SECONDS)
                 .readTimeout(120, TimeUnit.SECONDS)
                 .build()

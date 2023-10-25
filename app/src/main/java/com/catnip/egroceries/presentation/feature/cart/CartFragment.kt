@@ -26,6 +26,7 @@ import com.catnip.egroceries.utils.GenericViewModelFactory
 import com.catnip.egroceries.utils.hideKeyboard
 import com.catnip.egroceries.utils.proceedWhen
 import com.catnip.egroceries.utils.toCurrencyFormat
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 
 class CartFragment : Fragment() {
 
@@ -35,7 +36,8 @@ class CartFragment : Fragment() {
         val database = AppDatabase.getInstance(requireContext())
         val cartDao = database.cartDao()
         val cartDataSource: CartDataSource = CartDatabaseDataSource(cartDao)
-        val service = EGroceriesApiService.invoke()
+        val chuckerInterceptor = ChuckerInterceptor(requireContext().applicationContext)
+        val service = EGroceriesApiService.invoke(chuckerInterceptor)
         val apiDataSource = EGroceriesApiDataSource(service)
         val repo: CartRepository = CartRepositoryImpl(cartDataSource,apiDataSource)
         GenericViewModelFactory.create(CartViewModel(repo))

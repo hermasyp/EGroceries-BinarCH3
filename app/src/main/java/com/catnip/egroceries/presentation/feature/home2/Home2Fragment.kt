@@ -18,6 +18,7 @@ import com.catnip.egroceries.presentation.feature.home.adapter.subadapter.Catego
 import com.catnip.egroceries.presentation.feature.home.adapter.subadapter.ProductListAdapter
 import com.catnip.egroceries.utils.GenericViewModelFactory
 import com.catnip.egroceries.utils.proceedWhen
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 
 class Home2Fragment : Fragment() {
 
@@ -36,7 +37,8 @@ class Home2Fragment : Fragment() {
     }
 
     private val viewModel : Home2ViewModel by viewModels {
-        val service = EGroceriesApiService.invoke()
+        val chuckerInterceptor = ChuckerInterceptor(requireContext().applicationContext)
+        val service = EGroceriesApiService.invoke(chuckerInterceptor)
         val dataSource = EGroceriesApiDataSource(service)
         val repo: ProductRepository =
             ProductRepositoryImpl(dataSource)
