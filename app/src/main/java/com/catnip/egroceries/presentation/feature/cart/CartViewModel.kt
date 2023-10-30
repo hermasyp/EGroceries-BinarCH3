@@ -6,15 +6,18 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.catnip.egroceries.data.repository.CartRepository
 import com.catnip.egroceries.model.Cart
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
 Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
-class CartViewModel(private val repo: CartRepository) : ViewModel() {
+@HiltViewModel
+class CartViewModel @Inject constructor(private val repo: CartRepository) : ViewModel() {
 
     val cartList = repo.getUserCardData().asLiveData(Dispatchers.IO)
 

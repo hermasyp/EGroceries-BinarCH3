@@ -11,19 +11,22 @@ import com.catnip.egroceries.model.Product
 import com.catnip.egroceries.presentation.feature.home.adapter.model.HomeSection
 import com.catnip.egroceries.utils.AssetWrapper
 import com.catnip.egroceries.utils.ResultWrapper
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
 Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
 
-class HomeViewModel(
+@HiltViewModel
+class HomeViewModel @Inject constructor(
     private val repo: ProductRepository,
     private val assetWrapper: AssetWrapper
 ) : ViewModel() {

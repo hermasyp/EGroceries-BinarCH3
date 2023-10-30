@@ -4,6 +4,7 @@ plugins {
     id("kotlin-parcelize")
     id("com.google.devtools.ksp")
     id("org.jlleitschuh.gradle.ktlint")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -55,6 +56,10 @@ android {
                 "\"https://9d4a7a20-c211-4ce2-b74e-aadfc7d583c3.mock.pstmn.io\""
             )
         }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 
@@ -116,4 +121,8 @@ dependencies {
 
     // koin
     implementation("io.insert-koin:koin-android:3.5.0")
+
+    // hilt
+    implementation("com.google.dagger:hilt-android:2.48")
+    ksp("com.google.dagger:hilt-android-compiler:2.48")
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.catnip.egroceries.R
 import com.catnip.egroceries.databinding.FragmentCartBinding
 import com.catnip.egroceries.model.Cart
@@ -16,13 +17,14 @@ import com.catnip.egroceries.presentation.feature.checkout.CheckoutActivity
 import com.catnip.egroceries.utils.hideKeyboard
 import com.catnip.egroceries.utils.proceedWhen
 import com.catnip.egroceries.utils.toCurrencyFormat
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CartFragment : Fragment() {
 
     private lateinit var binding: FragmentCartBinding
 
-    private val viewModel: CartViewModel by viewModel()
+    private val viewModel: CartViewModel by viewModels()
 
     private val adapter: CartListAdapter by lazy {
         CartListAdapter(object : CartListener {

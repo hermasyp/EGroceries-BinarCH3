@@ -7,22 +7,16 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.catnip.egroceries.R
-import com.catnip.egroceries.data.local.datastore.UserPreferenceDataSourceImpl
-import com.catnip.egroceries.data.local.datastore.appDataStore
 import com.catnip.egroceries.databinding.ActivityMainBinding
-import com.catnip.egroceries.utils.GenericViewModelFactory
-import com.catnip.egroceries.utils.PreferenceDataStoreHelperImpl
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
-    private val viewModel: MainViewModel by viewModels {
-        val dataStore = this.appDataStore
-        val dataStoreHelper = PreferenceDataStoreHelperImpl(dataStore)
-        val userPreferenceDataSource = UserPreferenceDataSourceImpl(dataStoreHelper)
-        GenericViewModelFactory.create(MainViewModel(userPreferenceDataSource))
-    }
+    private val viewModel: MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)

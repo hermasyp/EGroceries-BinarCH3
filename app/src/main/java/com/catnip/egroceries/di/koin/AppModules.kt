@@ -1,4 +1,4 @@
-package com.catnip.egroceries.di
+package com.catnip.egroceries.di.koin
 
 import com.catnip.egroceries.data.local.database.AppDatabase
 import com.catnip.egroceries.data.local.database.datasource.CartDataSource

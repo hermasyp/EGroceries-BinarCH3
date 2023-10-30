@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.catnip.egroceries.R
 import com.catnip.egroceries.databinding.FragmentHomeBinding
@@ -14,17 +15,18 @@ import com.catnip.egroceries.presentation.feature.detailproduct.DetailProductAct
 import com.catnip.egroceries.presentation.feature.home.adapter.HomeAdapter
 import com.catnip.egroceries.presentation.feature.settings.SettingsDialogFragment
 import com.catnip.egroceries.utils.AssetWrapper
-import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
-    private val viewModel: HomeViewModel by viewModel()
+    private val viewModel: HomeViewModel by viewModels()
 
-    // field injection
-    private val assetWrapper: AssetWrapper by inject()
+    @Inject
+    lateinit var assetWrapper: AssetWrapper
 
     private val adapter: HomeAdapter by lazy {
         HomeAdapter(onProductClicked = {
