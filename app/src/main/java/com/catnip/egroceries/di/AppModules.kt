@@ -63,7 +63,11 @@ object AppModules {
     }
 
     val modules: List<Module> = listOf(
-        localModule, networkModule, dataSourceModule, repositoryModule,
-        viewModelModule,utilsModule
+        localModule,
+        networkModule,
+        dataSourceModule,
+        repositoryModule,
+        viewModelModule,
+        utilsModule
     )
 }

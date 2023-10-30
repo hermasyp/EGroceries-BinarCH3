@@ -29,7 +29,7 @@ class PreferenceDataStoreHelperImpl(private val dataStore: DataStore<Preferences
     Basically as soon we update the value in Datastore,
     the values returned by it also changes. */
     override fun <T> getPreference(key: Preferences.Key<T>, defaultValue: T):
-            Flow<T> = dataStore.data.catch { exception ->
+        Flow<T> = dataStore.data.catch { exception ->
         if (exception is IOException) {
             emit(emptyPreferences())
         } else {
@@ -43,7 +43,7 @@ class PreferenceDataStoreHelperImpl(private val dataStore: DataStore<Preferences
     /* This returns the last saved value of the key. If we change the value,
         it wont effect the values produced by this function */
     override suspend fun <T> getFirstPreference(key: Preferences.Key<T>, defaultValue: T):
-            T = dataStore.data.first()[key] ?: defaultValue
+        T = dataStore.data.first()[key] ?: defaultValue
 
     // This Sets the value based on the value passed in value parameter.
     override suspend fun <T> putPreference(key: Preferences.Key<T>, value: T) {

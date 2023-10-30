@@ -14,9 +14,7 @@ import com.catnip.egroceries.utils.GenericViewModelFactory
 import com.catnip.egroceries.utils.PreferenceDataStoreHelperImpl
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-
 class SettingsDialogFragment : BottomSheetDialogFragment() {
-
 
     private lateinit var binding: FragmentSettingsDialogBinding
 
@@ -26,10 +24,11 @@ class SettingsDialogFragment : BottomSheetDialogFragment() {
         val userPreferenceDataSource = UserPreferenceDataSourceImpl(dataStoreHelper)
         GenericViewModelFactory.create(SettingsViewModel(userPreferenceDataSource))
     }
-    private val mainViewModel : MainViewModel by activityViewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSettingsDialogBinding.inflate(inflater, container, false)

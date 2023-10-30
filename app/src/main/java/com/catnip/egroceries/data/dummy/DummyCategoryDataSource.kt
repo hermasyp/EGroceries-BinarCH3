@@ -52,6 +52,6 @@ class DummyCategoryDataSourceImpl() : DummyCategoryDataSource {
                 name = "Beer",
                 slug = "beer",
                 categoryImgUrl = "https://raw.githubusercontent.com/hermasyp/CH3-asset-code-challenge/master/categories/ic_category_beer.png"
-            ),
+            )
         )
 }

@@ -1,6 +1,5 @@
 package com.catnip.egroceries.data.local.database.datasource
 
-import androidx.room.Query
 import com.catnip.egroceries.data.local.database.dao.CartDao
 import com.catnip.egroceries.data.local.database.entity.CartEntity
 import kotlinx.coroutines.flow.Flow
@@ -12,7 +11,7 @@ Github : https://github.com/hermasyp
 interface CartDataSource {
     fun getAllCarts(): Flow<List<CartEntity>>
     fun getCartById(cartId: Int): Flow<CartEntity>
-    suspend fun insertCart(cart: CartEntity) : Long
+    suspend fun insertCart(cart: CartEntity): Long
     suspend fun deleteCart(cart: CartEntity): Int
     suspend fun updateCart(cart: CartEntity): Int
     suspend fun deleteAll()
@@ -42,5 +41,4 @@ class CartDatabaseDataSource(private val cartDao: CartDao) : CartDataSource {
     override suspend fun deleteAll() {
         cartDao.deleteAll()
     }
-
 }

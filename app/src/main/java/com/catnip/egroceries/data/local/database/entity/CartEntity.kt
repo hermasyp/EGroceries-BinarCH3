@@ -23,6 +23,5 @@ data class CartEntity(
     @ColumnInfo(name = "item_quantity")
     var itemQuantity: Int = 0,
     @ColumnInfo(name = "item_notes")
-    var itemNotes: String? = null,
+    var itemNotes: String? = null
 )
-

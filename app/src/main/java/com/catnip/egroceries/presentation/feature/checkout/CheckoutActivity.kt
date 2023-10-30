@@ -1,10 +1,10 @@
 package com.catnip.egroceries.presentation.feature.checkout
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.catnip.egroceries.R
 import com.catnip.egroceries.data.local.database.AppDatabase
@@ -109,33 +109,32 @@ class CheckoutActivity : AppCompatActivity() {
                     binding.tvTotalPrice.text = totalPrice.toCurrencyFormat()
                 }
             }, doOnLoading = {
-                binding.layoutState.root.isVisible = true
-                binding.layoutState.pbLoading.isVisible = true
-                binding.layoutState.tvError.isVisible = false
-                binding.layoutContent.root.isVisible = false
-                binding.layoutContent.rvCart.isVisible = false
-                binding.cvSectionOrder.isVisible = false
-            }, doOnError = { err ->
-                binding.layoutState.root.isVisible = true
-                binding.layoutState.pbLoading.isVisible = false
-                binding.layoutState.tvError.isVisible = true
-                binding.layoutState.tvError.text = err.exception?.message.orEmpty()
-                binding.layoutContent.root.isVisible = false
-                binding.layoutContent.rvCart.isVisible = false
-                binding.cvSectionOrder.isVisible = false
-            }, doOnEmpty = { data ->
-                binding.layoutState.root.isVisible = true
-                binding.layoutState.pbLoading.isVisible = false
-                binding.layoutState.tvError.isVisible = true
-                binding.layoutState.tvError.text = getString(R.string.text_cart_is_empty)
-                data.payload?.let { (_, totalPrice) ->
-                    binding.tvTotalPrice.text = totalPrice.toCurrencyFormat()
-                }
-                binding.layoutContent.root.isVisible = false
-                binding.layoutContent.rvCart.isVisible = false
-                binding.cvSectionOrder.isVisible = false
-            })
+                    binding.layoutState.root.isVisible = true
+                    binding.layoutState.pbLoading.isVisible = true
+                    binding.layoutState.tvError.isVisible = false
+                    binding.layoutContent.root.isVisible = false
+                    binding.layoutContent.rvCart.isVisible = false
+                    binding.cvSectionOrder.isVisible = false
+                }, doOnError = { err ->
+                    binding.layoutState.root.isVisible = true
+                    binding.layoutState.pbLoading.isVisible = false
+                    binding.layoutState.tvError.isVisible = true
+                    binding.layoutState.tvError.text = err.exception?.message.orEmpty()
+                    binding.layoutContent.root.isVisible = false
+                    binding.layoutContent.rvCart.isVisible = false
+                    binding.cvSectionOrder.isVisible = false
+                }, doOnEmpty = { data ->
+                    binding.layoutState.root.isVisible = true
+                    binding.layoutState.pbLoading.isVisible = false
+                    binding.layoutState.tvError.isVisible = true
+                    binding.layoutState.tvError.text = getString(R.string.text_cart_is_empty)
+                    data.payload?.let { (_, totalPrice) ->
+                        binding.tvTotalPrice.text = totalPrice.toCurrencyFormat()
+                    }
+                    binding.layoutContent.root.isVisible = false
+                    binding.layoutContent.rvCart.isVisible = false
+                    binding.cvSectionOrder.isVisible = false
+                })
         }
     }
-
 }

@@ -18,4 +18,3 @@ data class Product(
     val desc: String,
     val productImgUrl: String
 ) : Parcelable
-

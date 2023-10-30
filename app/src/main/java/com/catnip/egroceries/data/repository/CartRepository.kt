@@ -55,10 +55,11 @@ class CartRepositoryImpl(
                     Pair(result, totalPrice)
                 }
             }.map {
-                if (it.payload?.first?.isEmpty() == true)
+                if (it.payload?.first?.isEmpty() == true) {
                     ResultWrapper.Empty(it.payload)
-                else
+                } else {
                     it
+                }
             }
             .onStart {
                 emit(ResultWrapper.Loading())
@@ -123,6 +124,4 @@ class CartRepositoryImpl(
             eGroceriesDataSource.createOrder(orderRequest).status == true
         }
     }
-
-
 }

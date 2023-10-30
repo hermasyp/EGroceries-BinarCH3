@@ -1,7 +1,6 @@
 package com.catnip.egroceries
 
 import android.app.Application
-import com.catnip.egroceries.data.local.database.AppDatabase
 import com.catnip.egroceries.di.AppModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -26,4 +25,3 @@ class App : Application() {
         }
     }
 }
-

@@ -1,4 +1,4 @@
-package com.catnip.egroceries.presentation.feature.home.adapter;
+package com.catnip.egroceries.presentation.feature.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -27,25 +27,28 @@ Github : https://github.com/hermasyp
  **/
 class HomeAdapter(
     private val onProductClicked: (Product) -> Unit,
-    private val onCategoriesClicked : (Category) -> Unit,
+    private val onCategoriesClicked: (Category) -> Unit,
     private val onSettingsClicked: () -> Unit
 ) : RecyclerView.Adapter<ViewHolder>() {
 
     private val dataDiffer =
-        AsyncListDiffer(this, object : DiffUtil.ItemCallback<HomeSection>() {
-            override fun areItemsTheSame(
-                oldItem: HomeSection,
-                newItem: HomeSection
-            ): Boolean {
-                return oldItem.id == newItem.id
+        AsyncListDiffer(
+            this,
+            object : DiffUtil.ItemCallback<HomeSection>() {
+                override fun areItemsTheSame(
+                    oldItem: HomeSection,
+                    newItem: HomeSection
+                ): Boolean {
+                    return oldItem.id == newItem.id
+                }
+                override fun areContentsTheSame(
+                    oldItem: HomeSection,
+                    newItem: HomeSection
+                ): Boolean {
+                    return oldItem.hashCode() == newItem.hashCode()
+                }
             }
-            override fun areContentsTheSame(
-                oldItem: HomeSection,
-                newItem: HomeSection
-            ): Boolean {
-                return oldItem.hashCode() == newItem.hashCode()
-            }
-        })
+        )
 
     fun submitData(data: List<HomeSection>) {
         dataDiffer.submitList(data)
@@ -59,7 +62,8 @@ class HomeAdapter(
                         LayoutInflater.from(parent.context),
                         parent,
                         false
-                    ), onSettingsClicked
+                    ),
+                    onSettingsClicked
                 )
             }
 

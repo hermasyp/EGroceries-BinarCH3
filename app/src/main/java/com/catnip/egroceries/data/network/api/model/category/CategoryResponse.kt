@@ -1,9 +1,8 @@
 package com.catnip.egroceries.data.network.api.model.category
 
-
-import com.google.gson.annotations.SerializedName
 import androidx.annotation.Keep
 import com.catnip.egroceries.model.Category
+import com.google.gson.annotations.SerializedName
 
 @Keep
 data class CategoryResponse(

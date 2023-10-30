@@ -2,10 +2,10 @@ package com.catnip.egroceries.presentation.feature.detailproduct
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import com.catnip.egroceries.data.local.database.AppDatabase
 import com.catnip.egroceries.data.local.database.datasource.CartDataSource
@@ -34,7 +34,7 @@ class DetailProductActivity : AppCompatActivity() {
         val chuckerInterceptor = ChuckerInterceptor(this.applicationContext)
         val service = EGroceriesApiService.invoke(chuckerInterceptor)
         val apiDataSource = EGroceriesApiDataSource(service)
-        val repo: CartRepository = CartRepositoryImpl(cartDataSource,apiDataSource)
+        val repo: CartRepository = CartRepositoryImpl(cartDataSource, apiDataSource)
         GenericViewModelFactory.create(
             DetailProductViewModel(intent?.extras, repo)
         )
@@ -75,9 +75,11 @@ class DetailProductActivity : AppCompatActivity() {
                 doOnSuccess = {
                     Toast.makeText(this, "Add to cart success !", Toast.LENGTH_SHORT).show()
                     finish()
-                }, doOnError = {
+                },
+                doOnError = {
                     Toast.makeText(this, it.exception?.message.orEmpty(), Toast.LENGTH_SHORT).show()
-                })
+                }
+            )
         }
     }
 

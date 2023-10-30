@@ -10,13 +10,13 @@ Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
 class HeaderSectionViewHolder(
-    private val binding : ItemSectionHeaderHomeBinding,
-    private val onSettingsClicked : () -> Unit,
+    private val binding: ItemSectionHeaderHomeBinding,
+    private val onSettingsClicked: () -> Unit
 ) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<HomeSection> {
     override fun bind(item: HomeSection) {
-        if(item is HomeSection.HeaderSection){
+        if (item is HomeSection.HeaderSection) {
             binding.ivSettings.setOnClickListener {
-               onSettingsClicked.invoke()
+                onSettingsClicked.invoke()
             }
         }
     }

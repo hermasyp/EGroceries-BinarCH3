@@ -11,5 +11,5 @@ data class Cart(
     val productPrice: Double,
     val productImgUrl: String,
     var itemQuantity: Int = 0,
-    var itemNotes: String? = null,
+    var itemNotes: String? = null
 )

@@ -1,6 +1,5 @@
 package com.catnip.egroceries.presentation.feature.home.adapter.viewholder
 
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.catnip.egroceries.core.ViewHolderBinder
@@ -16,7 +15,7 @@ Github : https://github.com/hermasyp
  **/
 class CategoriesSectionViewHolder(
     private val binding: ItemSectionCategoryBinding,
-    private val onCategoriesClicked : (Category) -> Unit
+    private val onCategoriesClicked: (Category) -> Unit
 ) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<HomeSection> {
     private val adapter: CategoryListAdapter by lazy {
         CategoryListAdapter {
@@ -24,7 +23,7 @@ class CategoriesSectionViewHolder(
         }
     }
     override fun bind(item: HomeSection) {
-        if(item is HomeSection.CategoriesSection){
+        if (item is HomeSection.CategoriesSection) {
             item.data.proceedWhen(doOnSuccess = {
                 binding.layoutState.root.isVisible = false
                 binding.layoutState.pbLoading.isVisible = false
@@ -35,17 +34,17 @@ class CategoriesSectionViewHolder(
                 }
                 item.data.payload?.let { data -> adapter.submitData(data) }
             }, doOnLoading = {
-                binding.layoutState.root.isVisible = true
-                binding.layoutState.pbLoading.isVisible = true
-                binding.layoutState.tvError.isVisible = false
-                binding.rvCategory.isVisible = false
-            }, doOnError = {
-                binding.layoutState.root.isVisible = true
-                binding.layoutState.pbLoading.isVisible = false
-                binding.layoutState.tvError.isVisible = true
-                binding.layoutState.tvError.text = item.data.exception?.message.orEmpty()
-                binding.rvCategory.isVisible = false
-            })
+                    binding.layoutState.root.isVisible = true
+                    binding.layoutState.pbLoading.isVisible = true
+                    binding.layoutState.tvError.isVisible = false
+                    binding.rvCategory.isVisible = false
+                }, doOnError = {
+                    binding.layoutState.root.isVisible = true
+                    binding.layoutState.pbLoading.isVisible = false
+                    binding.layoutState.tvError.isVisible = true
+                    binding.layoutState.tvError.text = item.data.exception?.message.orEmpty()
+                    binding.rvCategory.isVisible = false
+                })
         }
     }
 }

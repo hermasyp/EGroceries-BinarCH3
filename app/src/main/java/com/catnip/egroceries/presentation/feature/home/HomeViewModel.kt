@@ -1,7 +1,6 @@
 package com.catnip.egroceries.presentation.feature.home
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
@@ -9,7 +8,6 @@ import com.catnip.egroceries.R
 import com.catnip.egroceries.data.repository.ProductRepository
 import com.catnip.egroceries.model.Category
 import com.catnip.egroceries.model.Product
-import com.catnip.egroceries.presentation.feature.home.adapter.HomeAdapter
 import com.catnip.egroceries.presentation.feature.home.adapter.model.HomeSection
 import com.catnip.egroceries.utils.AssetWrapper
 import com.catnip.egroceries.utils.ResultWrapper
@@ -49,7 +47,7 @@ class HomeViewModel(
             HomeSection.HeaderSection,
             HomeSection.BannerSection,
             HomeSection.CategoriesSection(categoryResult),
-            HomeSection.ProductsSection(productResult),
+            HomeSection.ProductsSection(productResult)
         )
 
     fun setSelectedCategory(category: String? = null) {

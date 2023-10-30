@@ -46,7 +46,8 @@ class CartFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCartBinding.inflate(inflater, container, false)
@@ -62,7 +63,7 @@ class CartFragment : Fragment() {
 
     private fun setClickListener() {
         binding.btnCheckout.setOnClickListener {
-            context?.startActivity(Intent(requireContext(),CheckoutActivity::class.java))
+            context?.startActivity(Intent(requireContext(), CheckoutActivity::class.java))
         }
     }
 
@@ -83,27 +84,26 @@ class CartFragment : Fragment() {
                     binding.tvTotalPrice.text = totalPrice.toCurrencyFormat()
                 }
             }, doOnLoading = {
-                binding.layoutState.root.isVisible = true
-                binding.layoutState.pbLoading.isVisible = true
-                binding.layoutState.tvError.isVisible = false
-                binding.rvCart.isVisible = false
-            }, doOnError = { err ->
-                binding.layoutState.root.isVisible = true
-                binding.layoutState.pbLoading.isVisible = false
-                binding.layoutState.tvError.isVisible = true
-                binding.layoutState.tvError.text = err.exception?.message.orEmpty()
-                binding.rvCart.isVisible = false
-            }, doOnEmpty = { data ->
-                binding.layoutState.root.isVisible = true
-                binding.layoutState.pbLoading.isVisible = false
-                binding.layoutState.tvError.isVisible = true
-                binding.layoutState.tvError.text = getString(R.string.text_cart_is_empty)
-                data.payload?.let { (_, totalPrice) ->
-                    binding.tvTotalPrice.text = totalPrice.toCurrencyFormat()
-                }
-                binding.rvCart.isVisible = false
-            })
+                    binding.layoutState.root.isVisible = true
+                    binding.layoutState.pbLoading.isVisible = true
+                    binding.layoutState.tvError.isVisible = false
+                    binding.rvCart.isVisible = false
+                }, doOnError = { err ->
+                    binding.layoutState.root.isVisible = true
+                    binding.layoutState.pbLoading.isVisible = false
+                    binding.layoutState.tvError.isVisible = true
+                    binding.layoutState.tvError.text = err.exception?.message.orEmpty()
+                    binding.rvCart.isVisible = false
+                }, doOnEmpty = { data ->
+                    binding.layoutState.root.isVisible = true
+                    binding.layoutState.pbLoading.isVisible = false
+                    binding.layoutState.tvError.isVisible = true
+                    binding.layoutState.tvError.text = getString(R.string.text_cart_is_empty)
+                    data.payload?.let { (_, totalPrice) ->
+                        binding.tvTotalPrice.text = totalPrice.toCurrencyFormat()
+                    }
+                    binding.rvCart.isVisible = false
+                })
         }
     }
-
 }

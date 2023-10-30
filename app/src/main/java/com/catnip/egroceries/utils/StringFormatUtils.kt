@@ -9,7 +9,7 @@ Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
 
-fun Double.toCurrencyFormat():String{
+fun Double.toCurrencyFormat(): String {
     val format: NumberFormat = NumberFormat.getCurrencyInstance()
     format.maximumFractionDigits = 0
     format.currency = Currency.getInstance("IDR")

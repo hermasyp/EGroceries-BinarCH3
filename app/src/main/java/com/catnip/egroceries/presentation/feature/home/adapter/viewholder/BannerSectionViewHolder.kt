@@ -10,11 +10,11 @@ Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
 class BannerSectionViewHolder(
-    private val binding : ItemSectionBannerHomeBinding
-) : RecyclerView.ViewHolder(binding.root),ViewHolderBinder<HomeSection>{
+    private val binding: ItemSectionBannerHomeBinding
+) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<HomeSection> {
     override fun bind(item: HomeSection) {
-        if(item is HomeSection.BannerSection){
-            //no-op
+        if (item is HomeSection.BannerSection) {
+            // no-op
         }
     }
 }

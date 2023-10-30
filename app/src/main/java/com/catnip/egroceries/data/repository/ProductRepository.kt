@@ -19,7 +19,7 @@ interface ProductRepository {
 }
 
 class ProductRepositoryImpl(
-    private val apiDataSource: EGroceriesDataSource,
+    private val apiDataSource: EGroceriesDataSource
 ) : ProductRepository {
 
     override fun getCategories(): Flow<ResultWrapper<List<Category>>> {
@@ -33,6 +33,4 @@ class ProductRepositoryImpl(
             apiDataSource.getProducts(category).data?.toProductList() ?: emptyList()
         }
     }
-
-
 }

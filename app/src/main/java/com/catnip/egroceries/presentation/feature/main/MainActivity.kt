@@ -1,21 +1,17 @@
 package com.catnip.egroceries.presentation.feature.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.catnip.egroceries.R
-import com.catnip.egroceries.data.dummy.DummyCategoryDataSourceImpl
-import com.catnip.egroceries.data.dummy.DummyProductDataSourceImpl
 import com.catnip.egroceries.data.local.datastore.UserPreferenceDataSourceImpl
 import com.catnip.egroceries.data.local.datastore.appDataStore
 import com.catnip.egroceries.databinding.ActivityMainBinding
 import com.catnip.egroceries.utils.GenericViewModelFactory
 import com.catnip.egroceries.utils.PreferenceDataStoreHelperImpl
-import com.google.gson.Gson
 
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {

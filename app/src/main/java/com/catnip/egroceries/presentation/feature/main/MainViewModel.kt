@@ -11,5 +11,6 @@ Github : https://github.com/hermasyp
  **/
 class MainViewModel(private val userPreferenceDataSource: UserPreferenceDataSource) : ViewModel() {
     val userDarkModeLiveData = userPreferenceDataSource.getUserDarkModePrefFlow().asLiveData(
-        Dispatchers.IO)
+        Dispatchers.IO
+    )
 }

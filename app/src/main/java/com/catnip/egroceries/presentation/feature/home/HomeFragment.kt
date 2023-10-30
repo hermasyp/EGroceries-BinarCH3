@@ -17,24 +17,24 @@ import com.catnip.egroceries.utils.AssetWrapper
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
     private val viewModel: HomeViewModel by viewModel()
-    //field injection
-    private val assetWrapper : AssetWrapper by inject()
+
+    // field injection
+    private val assetWrapper: AssetWrapper by inject()
 
     private val adapter: HomeAdapter by lazy {
         HomeAdapter(onProductClicked = {
             navigateToDetail(it)
         }, onSettingsClicked = {
-            Toast.makeText(requireContext(), assetWrapper.getString(R.string.text_toast), Toast.LENGTH_SHORT).show()
-            openSettingDialog()
-        }, onCategoriesClicked = {
-            viewModel.setSelectedCategory(it.slug)
-        })
+                Toast.makeText(requireContext(), assetWrapper.getString(R.string.text_toast), Toast.LENGTH_SHORT).show()
+                openSettingDialog()
+            }, onCategoriesClicked = {
+                viewModel.setSelectedCategory(it.slug)
+            })
     }
 
     private fun openSettingDialog() {
@@ -44,7 +44,6 @@ class HomeFragment : Fragment() {
     private fun navigateToDetail(item: Product) {
         DetailProductActivity.startActivity(requireContext(), item)
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,

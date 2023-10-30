@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.catnip.egroceries.data.repository.CartRepository
 import com.catnip.egroceries.model.Product
@@ -57,6 +56,4 @@ class DetailProductViewModel(
             }
         }
     }
-
-
 }
